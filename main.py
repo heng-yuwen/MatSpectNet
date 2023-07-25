@@ -1,3 +1,5 @@
+"""main entry point for running all tests
+"""
 import pytorch_lightning as pl
 from pytorch_lightning.cli import LightningCLI
 
