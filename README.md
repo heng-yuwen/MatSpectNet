@@ -12,3 +12,13 @@ pip install -r requirements.txt
 ## Dataset
 The dataset used in this code is the Local Material Dataset (LMD) from the Kyoto University Computer Vision Lab, please download it at the official website: https://vision.ist.i.kyoto-u.ac.jp/codeanddata/localmatdb/
 
+## ConfigLightning for MatSpectNet
+This repo use config to parse the training configs, with pytorch-lightning as the training framework.
+Use segmentation experiment:
+```python
+
+python train.py fit --config configs/spectral_recovery/spectral_config.yaml # pre-train the spectral recovery network S(x)
+python train.py fit --config configs/matspectnet/train.yaml # fit on train split of LMD.
+python train.py test --config configs/matspectnet/test.yaml # test on test split of LMD
+```
+The code is configured to train with 8 NVIDIA GeForce RTX 3090 GPUs.  
