@@ -3,7 +3,7 @@
 
 Yuwen Heng, Yihong Wu, Jiawen Chen, Srinandan Dasmahapatra, Hansung Kim
 
-# Environment
+## Environment
 To install the required environment, please use the command below:
 ```
 pip install -r requirements.txt
