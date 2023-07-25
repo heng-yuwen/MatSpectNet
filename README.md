@@ -10,7 +10,11 @@ pip install -r requirements.txt
 ```
 
 ## Dataset
-The dataset used in this code is the Local Material Dataset (LMD) from the Kyoto University Computer Vision Lab, please download it at the official website: https://vision.ist.i.kyoto-u.ac.jp/codeanddata/localmatdb/
+### Material Segmentation Dataset
+The dataset used for material segmentation is the Local Material Dataset (LMD) from the Kyoto University Computer Vision Lab, please download it at the official website: https://vision.ist.i.kyoto-u.ac.jp/codeanddata/localmatdb/
+
+### Spectral Recovery Dataset
+The datasset used for spectral recovery task is the ARAD_1K, from the NTIRE 2022 Challenge on Spectral Reconstruction from RGB, at https://codalab.lisn.upsaclay.fr/competitions/721
 
 ## ConfigLightning for MatSpectNet
 This repo use config to parse the training configs, with pytorch-lightning as the training framework.
