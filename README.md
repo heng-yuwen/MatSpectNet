@@ -16,6 +16,9 @@ The dataset used for material segmentation is the Local Material Dataset (LMD) f
 ### Spectral Recovery Dataset
 The datasset used for spectral recovery task is the ARAD_1K, from the NTIRE 2022 Challenge on Spectral Reconstruction from RGB, at https://codalab.lisn.upsaclay.fr/competitions/721
 
+### Spectraldb Dataset
+The spectral dataset can be downloaded from https://github.com/C38C/SpectralDB, which is already included in data/spectraldb
+
 ## ConfigLightning for MatSpectNet
 This repo use config to parse the training configs, with pytorch-lightning as the training framework.
 Use segmentation experiment:
