@@ -9,7 +9,7 @@ To install the required environment, please use the command below:
 pip install -r requirements.txt
 ```
 
-## Dataset
+## Datasets
 ### Material Segmentation Dataset
 The dataset used for material segmentation is the Local Material Dataset (LMD) from the Kyoto University Computer Vision Lab, please download it at the official website: https://vision.ist.i.kyoto-u.ac.jp/codeanddata/localmatdb/
 
