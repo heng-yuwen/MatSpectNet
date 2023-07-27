@@ -4,3 +4,4 @@ data/localmatdb/masks
 data/localmatdb/masks_png
 data/spectraldb/*.csv
 .DS_Store
+__pycache__
