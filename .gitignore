@@ -3,5 +3,6 @@ data/localmatdb/images
 data/localmatdb/masks
 data/localmatdb/masks_png
 data/spectraldb/*.csv
+data/localmatdb/images_resized
 .DS_Store
 __pycache__
