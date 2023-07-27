@@ -6,4 +6,7 @@ segmentation-models-pytorch==0.3.0
 timm==0.4.12
 matplotlib==3.6.2
 Pillow==9.3.0
-faiss
+einops
+faiss-gpu
+h5py
+jsonargparse[signatures]

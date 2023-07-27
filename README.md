@@ -29,8 +29,8 @@ This repo use config to parse the training configs, with pytorch-lightning as th
 Use segmentation experiment:
 ```python
 
-python train.py fit --config configs/spectral_recovery/spectral_config.yaml # pre-train the spectral recovery network S(x)
-python train.py fit --config configs/matspectnet/train.yaml # fit on train split of LMD.
-python train.py test --config configs/matspectnet/test.yaml # test on test split of LMD
+python main.py fit --config configs/spectral_recovery/spectral_config.yaml # pre-train the spectral recovery network S(x)
+python main.py fit --config configs/matspectnet/train.yaml # fit on train split of LMD.
+python main.py test --config configs/matspectnet/test.yaml # test on test split of LMD
 ```
 The code is configured to train with 8 NVIDIA GeForce RTX 3090 GPUs.  
