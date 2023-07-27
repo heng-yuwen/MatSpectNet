@@ -37,13 +37,31 @@ def load_and_save_mask_for_one_image(img_name, mask_paths, category2code):
         segment_img[(temp_mask != 0) & (segment_img == 255)] = category2code[segment_path.split("_")[-2]]
 
     segment_img = Image.fromarray(segment_img)
+
+    # resize the image with min dimension as 512.
+    W, H = origin_img.size
+    if H <= W:
+        new_size = (round(512 * W / H), 512)
+    else:
+        new_size = (512, round(512 * H / W))
+
+    origin_img = origin_img.resize(new_size, Image.BILINEAR)
+    segment_img = segment_img.resize(new_size, Image.NEAREST)
+
     name = img_name.split("/")[-1][:-4]
+    
+    origin_img.save("data/localmatdb/images_resized/{}.png".format(name))
     segment_img.save("data/localmatdb/masks_png/{}.png".format(name))
 
 if __name__ == "__main__":
     """enumerate  the file names
     """
-    os.mkdir("data/localmatdb/masks_png")
+    mask_path = "data/localmatdb/masks_png"
+    resized_image_path = "data/localmatdb/images_resized"
+    if not os.path.isdir(mask_path):
+        os.mkdir(mask_path)
+    if not os.path.isdir(resized_image_path):
+        os.mkdir(resized_image_path)
     image_names = os.listdir("data/localmatdb/images")
     mask_paths = glob("data/localmatdb/masks/**/*.png", recursive=True)
     category2code = {"asphalt": 0, "ceramic": 1, "concrete": 2, "fabric": 3, "foliage": 4,
