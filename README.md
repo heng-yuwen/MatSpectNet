@@ -11,7 +11,9 @@ pip install -r requirements.txt
 
 ## Datasets
 ### Material Segmentation Dataset
-The dataset used for material segmentation is the Local Material Dataset (LMD) from the Kyoto University Computer Vision Lab, please download it at the official website: https://vision.ist.i.kyoto-u.ac.jp/codeanddata/localmatdb/
+The dataset used for material segmentation is the Local Material Dataset (LMD) from the Kyoto University Computer Vision Lab, please download it at the official website: https://vision.ist.i.kyoto-u.ac.jp/codeanddata/localmatdb/. Please unpack the downloaded dataset complete_localmatdb.tgz to the folder ./data
+
+
 
 ### Spectral Recovery Dataset
 The datasset used for spectral recovery task is the ARAD_1K, from the NTIRE 2022 Challenge on Spectral Reconstruction from RGB, at https://codalab.lisn.upsaclay.fr/competitions/721
