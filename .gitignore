@@ -1,3 +1,5 @@
 .conda
-data
+data/localmatdb/images
+data/localmatdb/masks
+data/localmatdb/masks_png
 .DS_Store
