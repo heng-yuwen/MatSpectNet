@@ -1,14 +1,18 @@
 """The dataloaders to load and process multiple datasets.
 """
-from .mask_segment import XJ3SegmentDataModule
+# from .mask_segment import XJ3SegmentDataModule
 from .arad1k import SpectralRecoveryDataModule
-from .localmatdb import LocalMatDataModule
-from .unaligned_lmd_arad1k import UnalignedLMDARAD1K
+# from .localmatdb import LocalMatDataModule
+# from .unaligned_lmd_arad1k import UnalignedLMDARAD1K
 
-__all__ = {"XJ3SegmentDataModule": XJ3SegmentDataModule,
+# __all__ = {"XJ3SegmentDataModule": XJ3SegmentDataModule,
+#            "SpectralRecoveryDataModule": SpectralRecoveryDataModule,
+#            "LocalMatDataModule": LocalMatDataModule,
+#            "UnalignedLMDARAD1K": UnalignedLMDARAD1K}
+
+__all__ = {
            "SpectralRecoveryDataModule": SpectralRecoveryDataModule,
-           "LocalMatDataModule": LocalMatDataModule,
-           "UnalignedLMDARAD1K": UnalignedLMDARAD1K}
+           }
 
 
 def get_dataset(dataset_name):
