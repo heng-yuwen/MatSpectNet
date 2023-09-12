@@ -19,7 +19,7 @@ python convert_lmd.py
 ```
 
 ### Spectral Recovery Dataset
-The datasset used for spectral recovery task is the ARAD_1K, from the NTIRE 2022 Challenge on Spectral Reconstruction from RGB, at https://codalab.lisn.upsaclay.fr/competitions/721
+The datasset used for spectral recovery task is the ARAD_1K, from the NTIRE 2022 Challenge on Spectral Reconstruction from RGB, at https://codalab.lisn.upsaclay.fr/competitions/721. **Some of the hyperspectral images contain zero elements. They should be deleted first for MST++**
 
 ### Spectraldb Dataset
 The spectral dataset can be downloaded from https://github.com/C38C/SpectralDB, which is already included in data/spectraldb. The main file is the shape_metrics.npy, which transforms the spectral profile into a shape description, as described in the main paper. The implementation of the transformation is in the file convert_hsi_shape.py
