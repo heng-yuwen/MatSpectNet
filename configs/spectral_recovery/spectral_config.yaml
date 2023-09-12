@@ -1,0 +1,105 @@
+# pytorch_lightning==1.7.6
+seed_everything: 424424242
+trainer:
+  logger: true
+  enable_checkpointing: true
+  callbacks:
+    - class_path: pytorch_lightning.callbacks.ModelCheckpoint
+      init_args:
+        filename: epoch={epoch}-mean_mrae_loss={mean_mrae_loss:.5f}
+        monitor: mean_mrae_loss
+        verbose: false
+        save_last: true
+        save_top_k: 3
+        mode: min
+        auto_insert_metric_name: false
+        every_n_epochs: 1
+        save_on_train_epoch_end: false
+  default_root_dir: ./spectral_recovery_log
+  gradient_clip_val: null
+  gradient_clip_algorithm: null
+  num_nodes: 1
+  num_processes: null
+  devices: 1
+  gpus: null
+  auto_select_gpus: true
+  tpu_cores: null
+  ipus: null
+  enable_progress_bar: true
+  overfit_batches: 0.0
+  track_grad_norm: -1
+  check_val_every_n_epoch: 1
+  fast_dev_run: false
+  accumulate_grad_batches: null
+  max_epochs: 400
+  min_epochs: 50
+  max_steps: -1
+  min_steps: null
+  max_time: null
+  limit_train_batches: null
+  limit_val_batches: null
+  limit_test_batches: null
+  limit_predict_batches: null
+  val_check_interval: null
+  log_every_n_steps: 50
+  accelerator: gpu
+  strategy: null
+  sync_batchnorm: false
+  precision: 32
+  enable_model_summary: true
+  weights_save_path: null
+  num_sanity_val_steps: 2
+  resume_from_checkpoint: null
+  profiler: null
+  benchmark: null
+  deterministic: null
+  reload_dataloaders_every_n_epochs: 0
+  auto_lr_find: false
+  replace_sampler_ddp: true
+  detect_anomaly: false
+  auto_scale_batch_size: true
+  plugins: null
+  amp_backend: native
+  amp_level: null
+  move_metrics_to_cpu: false
+  multiple_trainloader_mode: max_size_cycle
+ckpt_path: null
+model:
+  class_path: experiments.SpectralRecovery
+  init_args:
+    method: mst_plus_plus
+    optimizer_dict:
+      type: Adam
+      lr: 4e-4
+      betas:
+        - 0.9
+        - 0.999
+    scheduler_dict:
+      type: CosineAnnealingLR
+      by_iteration: true
+      eta_min: 1e-6
+    pretrained_model_path: null
+data:
+  class_path: datasets.SpectralRecoveryDataModule
+  init_args:
+    data_root: ./ARAD_1K
+    train_rgb_folder: Train_RGB
+    train_spectral_folder: Train_spectral
+    valid_rgb_folder: Valid_RGB
+    valid_spectral_folder: Valid_spectral
+    test_rgb_folder: Test_RGB
+    num_workers: 4
+    batch_size: 4
+    pin_memory: false
+    train_transform:
+      - class_path: SpectralNorm
+      - class_path: SpectralRandomCrop
+        init_args:
+          patch_size:
+            - 128
+            - 128
+      - class_path: SpectralRotateFlip
+        init_args:
+          p: 0.5
+    test_transform:
+      - class_path: SpectralNorm
