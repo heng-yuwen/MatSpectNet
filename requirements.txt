@@ -1,6 +1,6 @@
 torch==1.12.1
 torchvision==0.13.1
-pytorch-lightning==1.8.0
+pytorch-lightning==1.7.6
 torchmetrics==0.10.2
 segmentation-models-pytorch==0.3.0
 timm==0.4.12
