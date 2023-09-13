@@ -1,5 +1,5 @@
 # pytorch_lightning==1.7.6
-seed_everything: 424424242
+seed_everything: true
 trainer:
   logger: true
   enable_checkpointing: true
