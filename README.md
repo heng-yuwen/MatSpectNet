@@ -19,9 +19,9 @@ python convert_lmd.py
 ```
 
 ### Spectral Recovery Dataset
-The datasset used for spectral recovery task is the ARAD_1K, from the NTIRE 2022 Challenge on Spectral Reconstruction from RGB, at https://codalab.lisn.upsaclay.fr/competitions/721. **Some of the hyperspectral images contain zero elements. They should be deleted first for MST++**
+The datasset used for spectral recovery task is the ARAD_1K, from the NTIRE 2022 Challenge on Spectral Reconstruction from RGB, at https://codalab.lisn.upsaclay.fr/competitions/721. **Some of the hyperspectral images contain zero elements. They should be deleted first for MST++.**
 
-The directory structure should be organised as follows: 
+The directory structure in ./data should be organised as follows: 
 
 ARAD_1K\
 |-- NTIRE2022_spectral\
