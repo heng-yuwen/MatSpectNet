@@ -1,5 +1,5 @@
 from torchvision.transforms import *
-# from .segment_transforms import *
+from .segment_transforms import *
 from .spectral_recovery_transforms import *
 
 
