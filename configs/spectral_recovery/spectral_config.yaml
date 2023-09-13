@@ -88,8 +88,8 @@ data:
     valid_rgb_folder: Valid_RGB
     valid_spectral_folder: Valid_spectral
     test_rgb_folder: Test_RGB
-    num_workers: 4
-    batch_size: 4
+    num_workers: 8
+    batch_size: 8
     pin_memory: false
     train_transform:
       - class_path: SpectralNorm
