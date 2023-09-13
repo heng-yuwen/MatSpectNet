@@ -82,7 +82,7 @@ model:
 data:
   class_path: datasets.SpectralRecoveryDataModule
   init_args:
-    data_root: ./ARAD_1K
+    data_root: ./data/ARAD_1K
     train_rgb_folder: Train_RGB
     train_spectral_folder: Train_spectral
     valid_rgb_folder: Valid_RGB
