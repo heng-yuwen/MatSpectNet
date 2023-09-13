@@ -20,7 +20,7 @@ trainer:
   gradient_clip_algorithm: null
   num_nodes: 1
   num_processes: null
-  devices: 1
+  devices: 8
   gpus: null
   auto_select_gpus: true
   tpu_cores: null
@@ -43,7 +43,7 @@ trainer:
   val_check_interval: null
   log_every_n_steps: 50
   accelerator: gpu
-  strategy: null
+  strategy: ddp
   sync_batchnorm: false
   precision: 32
   enable_model_summary: true
