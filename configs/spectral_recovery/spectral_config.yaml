@@ -1,4 +1,4 @@
-# pytorch_lightning==1.7.6
+# pytorch_lightning==1.8.0
 seed_everything: true
 trainer:
   logger: true
@@ -47,7 +47,6 @@ trainer:
   sync_batchnorm: false
   precision: 32
   enable_model_summary: true
-  weights_save_path: null
   num_sanity_val_steps: 2
   resume_from_checkpoint: null
   profiler: null
