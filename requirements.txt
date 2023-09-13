@@ -7,6 +7,7 @@ timm==0.4.12
 matplotlib==3.6.2
 Pillow==9.3.0
 pandas==1.5.3
+mmcv==1.6.2
 einops
 faiss-gpu
 h5py
