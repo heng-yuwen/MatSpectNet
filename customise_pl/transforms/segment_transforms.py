@@ -93,11 +93,11 @@ class SegmentResize(pl.LightningModule):
     def forward(self, image, mask):
         if self.min2size and isinstance(self.size, int):
             _, H, W = image.size()
-            if H <= W and H < self.size:
+            if H <= W:
                 resize = (self.size, round(self.size * W / H))
             else:
                 resize = (round(self.size * H / W), self.size)
-        elif W < self.size:
+        else:
             resize = self.size            
         image = F.resize(image, resize, interpolation=transforms.InterpolationMode.BILINEAR)
         mask = F.resize(mask, resize, interpolation=transforms.InterpolationMode.NEAREST)
