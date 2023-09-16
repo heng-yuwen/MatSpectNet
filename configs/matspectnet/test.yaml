@@ -1,0 +1,168 @@
+# pytorch_lightning==1.8.0
+seed_everything: 411923724
+trainer:
+  logger: true
+  enable_checkpointing: true
+  callbacks:
+    - class_path: pytorch_lightning.callbacks.ModelCheckpoint
+      init_args:
+        filename: epoch={epoch}-valid_acc={ep_valid_acc:.5f}
+        monitor: ep_valid_acc
+        verbose: false
+        save_last: true
+        save_top_k: 5
+        mode: max
+        auto_insert_metric_name: false
+        every_n_epochs: 1
+        save_on_train_epoch_end: false
+    - class_path: pytorch_lightning.callbacks.ModelCheckpoint
+      init_args:
+        filename: epoch={epoch}-valid_mean_acc={ep_valid_mean_acc:.5f}
+        monitor: ep_valid_mean_acc
+        verbose: false
+        save_last: true
+        save_top_k: 5
+        mode: max
+        auto_insert_metric_name: false
+        every_n_epochs: 1
+        save_on_train_epoch_end: false
+    - class_path: pytorch_lightning.callbacks.LearningRateMonitor
+      init_args:
+        logging_interval: step
+  default_root_dir: logs/matspectnet
+  gradient_clip_val: null
+  gradient_clip_algorithm: null
+  num_nodes: 1
+  num_processes: null
+  devices: [1]
+  gpus: null
+  auto_select_gpus: false
+  tpu_cores: null
+  ipus: null
+  enable_progress_bar: true
+  overfit_batches: 0.0
+  track_grad_norm: -1
+  check_val_every_n_epoch: 1
+  fast_dev_run: false
+  accumulate_grad_batches: null
+  max_epochs: 400
+  min_epochs: 50
+  max_steps: -1
+  min_steps: null
+  max_time: null
+  limit_train_batches: null
+  limit_val_batches: null
+  limit_test_batches: null
+  limit_predict_batches: null
+  val_check_interval: null
+  log_every_n_steps: 50
+  accelerator: gpu
+  strategy: null
+  sync_batchnorm: false
+  precision: 16
+  enable_model_summary: true
+  num_sanity_val_steps: 2
+  resume_from_checkpoint: null
+  profiler: null
+  benchmark: false
+  deterministic: true
+  reload_dataloaders_every_n_epochs: 0
+  auto_lr_find: false
+  replace_sampler_ddp: true
+  detect_anomaly: false
+  auto_scale_batch_size: true
+  plugins: null
+  amp_backend: native
+  amp_level: null
+  move_metrics_to_cpu: false
+  multiple_trainloader_mode: max_size_cycle
+ckpt_path: logs/matspectnet/lightning_logs/version_0/checkpoints/epoch=80-valid_acc=0.87863.ckpt
+model:
+  class_path: experiments.MatSpectNet
+  init_args:
+    rgb2hsi_epoch: 20
+    tune_rgb2hsi: false # tune the rgb2hsi while tuning the segmentor
+    rgb2hsi: mst_plus_plusv2
+    hsi2rgb: HSItoRGBReverserV2
+    hsiseg: HSISegModelV2
+    rgb2hsi_checkpoint_path: checkpoints/epoch=350-mean_mrae_loss=0.17736.ckpt
+    spectral_filter_number: 12
+    hsiseg_backbone_checkpoint: checkpoints/swinv2_tiny_patch4_window8_256.pth
+    backbone_model: swinv2
+    segment_classes: 17
+    is_sparse: true
+    rgb_camera_qe_path: data/ARAD_1K/NTIRE2022_spectral/resources/resampled_rgb_camera_qe.pkl
+    optimizer_dict:
+      generator_optimiser:
+        type: AdamW
+        lr: 0.00006
+        betas:
+          - 0.5
+          - 0.999
+      discriminator_optimiser:
+        type: AdamW
+        lr: 0.00006
+        betas:
+          - 0.5
+          - 0.999
+      segmentor_optimiser:
+        type: AdamW
+        lr: 0.00008
+        betas:
+          - 0.9
+          - 0.999
+    scheduler_dict:
+      generator_scheduler:
+        type: LinearLR
+        by_iteration: false
+        start_epoch: 1
+      discriminator_scheduler:
+        type: LinearLR
+        by_iteration: false
+        start_epoch: 1
+      segmentor_scheduler:
+        type: CyclicLR
+        start_epoch: 20  # same as rgb2hsi epoch
+        max_lr: 0.00008
+        base_lr: 0.0000007
+        step_size_up: 2
+        step_size_down: 400
+        mode: exp_range
+        gamma: 0.97
+        by_iteration: false  
+        cycle_momentum: false
+    #    pretrained_rgb2hsi_path: null
+#    pretrained_hsi2rgb_path: null
+    lambda_rgb2hsi: 10
+    lambda_hsi2rgb: 10
+    lambda_segment: 1
+    extrat_features: true
+    use_domain_dis: false
+    use_materialdb: true
+data:
+  class_path: datasets.LocalMatDataModule
+  init_args:
+    data_root: data/localmatdb
+    image_folder: images_resized
+    mask_folder: masks_png_resized
+    batch_size: 7
+    num_workers: 10
+    pin_memory: false
+    partition_idx: 1
+    train_image_transform:
+      - class_path: SegmentAsSpectralNorm
+    train_common_transform:
+      - class_path: SegmentRandomCrop
+        init_args:
+          size:
+            - 512
+            - 512
+      - class_path: SegmentRandomHorizontalFlip
+      - class_path: SegmentRandomVerticalFlip
+    test_image_transform:
+      - class_path: SegmentAsSpectralNorm
+    # test_common_transform:
+    #   - class_path: SegmentResize
+    #     init_args:
+    #       size: 512
+    #       min2size: true
