@@ -76,7 +76,7 @@ trainer:
   amp_level: null
   move_metrics_to_cpu: false
   multiple_trainloader_mode: max_size_cycle
-ckpt_path: logs/matspectnet/lightning_logs/version_0/checkpoints/epoch=80-valid_acc=0.87863.ckpt
+ckpt_path: checkpoints/submit.ckpt
 model:
   class_path: experiments.MatSpectNet
   init_args:

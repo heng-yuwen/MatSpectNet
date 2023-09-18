@@ -37,11 +37,17 @@ The spectral dataset can be downloaded from https://github.com/C38C/SpectralDB, 
 
 ## ConfigLightning for MatSpectNet
 This repo use config to parse the training configs, with pytorch-lightning as the training framework.
+
+Please download the checkpoints, and put them in the folder "checkpoints" first.
+
+MatSpectNet checkpoint:
+https://drive.google.com/file/d/1bk0bMVLipnmUv9Ttl8GZtXY4PB61_stZ/view?usp=drive_link
+
+Swin backbone checkpoint:
+https://github.com/SwinTransformer/storage/releases/download/v2.0.0/swinv2_tiny_patch4_window8_256.pth
+
 Use segmentation experiment:
 ```python
-
-python main.py fit --config configs/spectral_recovery/spectral_config.yaml # pre-train the spectral recovery network S(x)
-python main.py fit --config configs/matspectnet/train.yaml # fit on train split of LMD.
 python main.py test --config configs/matspectnet/test.yaml # test on test split of LMD
 ```
 The code is configured to train with 8 NVIDIA GeForce RTX 3090 GPUs.  
